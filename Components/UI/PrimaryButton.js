@@ -1,18 +1,10 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  useWindowDimensions,
-} from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 import Colors from "../../constants/colors";
 
 function PrimaryButton({ children, onPress }) {
-  const { width, height } = useWindowDimensions();
-
-  let content = (
-    <>
+  return (
+    <View style={style.buttonOuterContainer}>
       <Pressable
         style={({ pressed }) =>
           pressed
@@ -24,27 +16,8 @@ function PrimaryButton({ children, onPress }) {
       >
         <Text style={style.buttonText}>{children}</Text>
       </Pressable>
-    </>
+    </View>
   );
-
-  if (width > 400 && height > 900) {
-    content = (
-      <>
-        <Pressable
-          style={({ pressed }) =>
-            pressed
-              ? [style.buttonInnerContainerWideW, style.pressed]
-              : style.buttonInnerContainerWide
-          }
-          onPress={onPress}
-          android_ripple={{ color: Colors.primary600 }}
-        >
-          <Text style={style.buttonText}>{children}</Text>
-        </Pressable>
-      </>
-    );
-  }
-  return <View style={style.buttonOuterContainer}>{content}</View>;
 }
 
 export default PrimaryButton;
@@ -56,13 +29,6 @@ const style = StyleSheet.create({
     overflow: "hidden",
   },
   buttonInnerContainer: {
-    backgroundColor: Colors.primary500,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    elevation: 2,
-  },
-  buttonInnerContainerWide: {
-    width: 120,
     backgroundColor: Colors.primary500,
     paddingVertical: 8,
     paddingHorizontal: 16,

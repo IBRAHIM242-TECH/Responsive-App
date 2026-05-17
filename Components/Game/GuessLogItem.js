@@ -1,38 +1,19 @@
-import { View, Text, StyleSheet, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import Colors from "../../constants/colors";
 
 function GuessLogItem({ roundNumber, Guess }) {
-  const { width, height } = useWindowDimensions();
-
-  let content = (
-    <>
-      <View style={styles.listItem}>
-        <Text style={styles.itemText}>#{roundNumber}</Text>
-        <Text style={styles.itemText}>Opponent's Guess: {Guess}</Text>
-      </View>
-    </>
+  return (
+    <View style={styles.listItem}>
+      <Text style={styles.itemText}>#{roundNumber}</Text>
+      <Text style={styles.itemText}>Opponent's Guess: {Guess}</Text>
+    </View>
   );
-
-  if (width > 400 && height > 900) {
-    content = (
-      <>
-        <View style={styles.listItemWide}>
-          <Text style={styles.itemText}>#{roundNumber}</Text>
-          <Text style={styles.itemText}>Opponent's Guess: {Guess}</Text>
-        </View>
-      </>
-    );
-  }
-  return <View style={styles.screen}>{content}</View>;
 }
 
 export default GuessLogItem;
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
   listItem: {
     borderColor: Colors.primary800,
     borderWidth: 1,
@@ -43,22 +24,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    elevation: 4,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
-  },
-  listItemWide: {
-    borderColor: Colors.primary800,
-    borderWidth: 1,
-    borderRadius: 40,
-    padding: 12,
-    marginVertical: 8,
-    backgroundColor: Colors.accent500,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: 300,
     elevation: 4,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 0 },
